@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>배이화 | Dancer Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#024ad8; --primary-bright:#296ef9; --primary-deep:#0e3191; --primary-soft:#c9e0fc;
+  --canvas:#fff; --cloud:#f7f7f7; --fog:#e8e8e8; --steel:#c2c2c2; --hairline:#e8e8e8;
+  --ink:#1a1a1a; --ink-soft:#292929; --on-ink:#fff; --charcoal:#3d3d3d; --graphite:#636363;
+  --coral:#ff5050;
+  --r-sm:3px; --r-md:4px; --r-lg:8px; --r-xl:16px; --r-pill:9999px;
+  --xxs:4px; --xs:8px; --sm:12px; --md:16px; --lg:20px; --xl:24px; --xxl:32px; --section:80px;
+  --lift:0 2px 8px rgba(26,26,26,.08);
+  --font:"Manrope","Noto Sans KR",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font:400 16px/1.4 var(--font);color:var(--ink);background:var(--canvas)}
+a{color:inherit;text-decoration:none}
+svg{display:block}
+.wrap{max-width:1366px;margin:0 auto;padding:0 var(--xxl)}
+section{padding:var(--section) 0;scroll-margin-top:64px}
+.band-cloud{background:var(--cloud)}
+
+.d-xxl{font-size:72px;font-weight:500;line-height:1}
+.d-xl{font-size:56px;font-weight:500;line-height:1}
+.d-md{font-size:32px;font-weight:500;line-height:1.1}
+.d-xs{font-size:20px;font-weight:500;line-height:1.2}
+.body-lg{font-size:18px;line-height:1.4}
+.cap{font-size:14px;line-height:1.5;color:var(--charcoal)}
+.eyebrow{font-size:14px;font-weight:700;color:var(--primary);margin-bottom:var(--sm);letter-spacing:.7px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:var(--sm) var(--xl);
+  border-radius:var(--r-md);font:600 14px/1.4 var(--font);letter-spacing:.7px;text-transform:uppercase;border:1px solid transparent;cursor:pointer}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:active{background:var(--primary-deep)}
+.btn-outline-ink{background:var(--canvas);color:var(--ink);border-color:var(--ink)}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+
+/* utility + nav */
+.utility{background:var(--ink);color:var(--on-ink);height:36px;font-size:14px}
+.utility .wrap{display:flex;justify-content:space-between;align-items:center;height:100%;padding:0 var(--xl)}
+.utility span{color:var(--steel)}
+.nav{position:sticky;top:0;z-index:10;background:var(--canvas);border-bottom:1px solid var(--hairline)}
+.nav .wrap{display:flex;align-items:center;height:64px;gap:var(--xl);position:relative}
+.logo{display:flex;align-items:center;gap:var(--xs);font-weight:700;font-size:20px}
+.logo i{width:32px;height:32px;border-radius:var(--r-md);background:var(--ink);color:#fff;display:grid;place-items:center;font-style:normal;font-size:13px}
+.nav ul{display:flex;list-style:none;margin-left:auto}
+.nav ul a{display:block;padding:var(--xs) var(--md);border-bottom:2px solid transparent}
+.nav ul a.active{border-bottom-color:var(--primary)}
+.menu-btn{display:none;margin-left:auto;background:none;border:0;width:44px;height:44px;font-size:24px;cursor:pointer}
+
+/* hero */
+.hero{padding:48px 0 var(--section);overflow:hidden}
+.hero-stage{position:relative;padding:0 72px}
+.chev{position:absolute;top:0;bottom:0;width:56px;background:var(--primary);clip-path:polygon(60% 0,100% 0,40% 100%,0 100%)}
+.chev.l{left:0}.chev.r{right:0}
+.hero-card{background:var(--canvas);border-radius:var(--r-xl);border:1px solid var(--hairline);padding:var(--xxl);
+  display:grid;grid-template-columns:1fr 1fr;gap:var(--xxl);align-items:center}
+.photo{border-radius:var(--r-xl);aspect-ratio:4/5;display:grid;place-items:center;color:var(--graphite);font-size:14px;
+  background:linear-gradient(135deg,var(--primary-soft),var(--fog))}
+.badge-coral{display:inline-block;background:var(--coral);color:#fff;border-radius:var(--r-sm);padding:var(--xxs) var(--xs);font-size:14px;font-weight:700;margin-bottom:var(--md)}
+.hero h1{margin-bottom:var(--xl)}
+.hero h1 small{display:block;font-size:20px;color:var(--graphite);margin-top:var(--md);font-weight:500}
+.hero p{color:var(--charcoal);margin-bottom:var(--xxl)}
+.stamp{display:flex;gap:var(--xxl);margin-bottom:var(--xxl);flex-wrap:wrap}
+.stamp b{display:block;font-size:24px;font-weight:500}
+.btn-row{display:flex;gap:var(--sm);flex-wrap:wrap}
+
+/* profile + fields */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--xl);margin-bottom:var(--xxl);flex-wrap:wrap}
+.profile{display:grid;grid-template-columns:1fr 2fr;gap:var(--xl)}
+.info{background:var(--canvas);border-radius:var(--r-xl);padding:var(--xl);box-shadow:var(--lift)}
+.info dl{display:grid;grid-template-columns:auto 1fr;gap:var(--sm) var(--xl);font-size:14px}
+.info dt{color:var(--graphite)}
+.info dd{font-weight:500;word-break:break-all}
+.info dd a{color:var(--primary);text-decoration:underline;text-underline-offset:3px}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--xl)}
+.cat{background:var(--canvas);border-radius:var(--r-lg);padding:var(--md);border:1px solid var(--hairline)}
+.cat svg{width:48px;height:48px;margin-bottom:var(--sm);stroke:var(--ink);fill:none;stroke-width:1.5}
+.cat b{display:block;font-weight:500;margin-bottom:var(--xxs)}
+
+/* highlight cards */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--xl)}
+.card{background:var(--canvas);border-radius:var(--r-xl);padding:var(--xl);box-shadow:var(--lift);display:flex;flex-direction:column}
+.card .photo{aspect-ratio:1;margin-bottom:var(--xl)}
+.card .yr{font-size:14px;color:var(--graphite);margin-bottom:var(--xxs)}
+.card h3{margin-bottom:var(--xs)}
+.card .cap{margin-bottom:var(--md)}
+.tags{display:flex;gap:var(--xs);flex-wrap:wrap;margin-top:auto}
+.pill-ink,.pill-out{border-radius:var(--r-lg);padding:4px 10px;font-size:14px}
+.pill-ink{background:var(--ink);color:#fff}
+.pill-out{border:1px solid var(--ink)}
+
+/* career timeline */
+.tabs{display:flex;gap:var(--xs);flex-wrap:wrap}
+.tab{background:var(--canvas);color:var(--ink);border:1px solid var(--steel);border-radius:var(--r-pill);padding:var(--xs) var(--lg);
+  font:500 16px var(--font);cursor:pointer;min-height:40px;display:inline-flex;align-items:center}
+.tab[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.timeline{background:var(--fog);border-radius:var(--r-xl);padding:var(--xl);display:grid;gap:var(--xs)}
+.row{background:var(--canvas);border-radius:var(--r-lg);padding:var(--md) var(--xl);display:grid;grid-template-columns:110px 1fr auto;gap:var(--xl);align-items:center}
+.row time{font-size:14px;color:var(--graphite);font-variant-numeric:tabular-nums}
+.row b{font-weight:500}
+.row .award{display:inline-block;margin-left:var(--xs);background:var(--coral);color:#fff;border-radius:var(--r-sm);padding:2px 6px;font-size:12px;font-weight:700;vertical-align:2px}
+.row .pill-out{font-size:12px;white-space:nowrap}
+.row[hidden]{display:none}
+
+/* dark promo */
+.promo{background:var(--ink);color:var(--on-ink);border-radius:var(--r-xl);padding:var(--xxl) 48px;display:grid;grid-template-columns:2fr 1fr;gap:var(--xxl);align-items:center}
+.promo blockquote{font-size:32px;font-weight:500;line-height:1.25}
+.promo .cap{color:var(--steel);margin-top:var(--xl)}
+.nums{display:grid;gap:var(--xl)}
+.nums b{display:block;font-size:44px;font-weight:500;line-height:1;color:var(--primary-bright)}
+.nums span{color:var(--steel);font-size:14px}
+
+/* help + footer */
+.help{text-align:center;padding:64px 0;color:#fff;background:linear-gradient(135deg,var(--ink) 40%,var(--primary-deep))}
+.help h2{margin-bottom:var(--md)}
+.help p{color:var(--steel);margin-bottom:var(--xl)}
+.help .tabs{justify-content:center}
+.help .tab{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+footer{background:var(--ink);color:var(--on-ink);padding:48px 0 var(--xxl);border-top:1px solid var(--ink-soft)}
+.fcols{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--xl);margin-bottom:40px}
+.fcols b{display:block;font-weight:500;margin-bottom:var(--md)}
+.fcols a{display:block;font-size:14px;color:var(--steel);padding:var(--xxs) 0}
+.fbottom{border-top:1px solid var(--ink-soft);padding-top:var(--xl);display:flex;justify-content:space-between;gap:var(--md);flex-wrap:wrap;font-size:12px;color:var(--steel)}
+
+@media (max-width:1279px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:1023px){
+  .nav ul{display:none;position:absolute;top:64px;left:0;right:0;background:var(--canvas);flex-direction:column;padding:var(--md) var(--xl);box-shadow:0 8px 24px rgba(26,26,26,.12)}
+  .nav ul.open{display:flex}
+  .nav ul a{font-size:18px;padding:var(--sm) 0}
+  .menu-btn{display:block}
+  .hero-stage{padding:0 40px}.chev{width:34px}
+  .hero-card,.promo,.profile{grid-template-columns:1fr}
+  .hero-card .photo{aspect-ratio:4/3}
+  .d-xxl{font-size:56px}.d-xl{font-size:44px}
+  .fcols{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:767px){
+  section{padding:48px 0}
+  .wrap{padding:0 var(--md)}
+  .grid{grid-template-columns:1fr}
+  .cats{grid-template-columns:1fr 1fr;gap:var(--md)}
+  .hero-stage{padding:0}.chev{display:none}
+  .hero-card{padding:var(--xl)}
+  .d-xxl{font-size:40px}.d-xl{font-size:36px}.d-md,.promo blockquote{font-size:24px}
+  .promo{padding:var(--xxl) var(--xl)}
+  .timeline{padding:var(--xs)}
+  .row{grid-template-columns:1fr auto;gap:var(--xxs) var(--md);padding:var(--md)}
+  .row time{grid-column:1/-1}
+  .utility .hide-m{display:none}
+}
+@media (max-width:479px){.d-xxl{font-size:36px}.fcols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="utility"><div class="wrap">
+  <span class="hide-m">K-POP DANCER · PERFORMER · INSTRUCTOR</span>
+  <a href="#contact">연락하기 →</a>
+</div></div>
+
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#top"><i>BI</i>배이화</a>
+  <button class="menu-btn" aria-label="메뉴 열기" aria-expanded="false">☰</button>
+  <ul id="menu">
+    <li><a class="active" href="#top">홈</a></li>
+    <li><a href="#profile">프로필</a></li>
+    <li><a href="#highlights">하이라이트</a></li>
+    <li><a href="#career">경력</a></li>
+    <li><a href="#contact">연락처</a></li>
+  </ul>
+</div></header>
+
+<main id="top">
+<!-- hero -->
+<section class="hero"><div class="wrap"><div class="hero-stage">
+  <div class="chev l" aria-hidden="true"></div><div class="chev r" aria-hidden="true"></div>
+  <div class="hero-card">
+    <div class="photo">프로필 사진 (4:5)</div>
+    <div>
+      <span class="badge-coral">NOW · 레고랜드 코리아 공연팀</span>
+      <h1 class="d-xxl">무대 위에서<br>이야기하는 댄서<small>배이화 · K-pop Dancer &amp; Performer</small></h1>
+      <p class="body-lg">2015년부터 무대에 섰습니다. 대회, 아티스트 백업, 테마파크 공연팀, 안무 가이드와 K-pop 티칭까지 — 춤으로 할 수 있는 일을 넓혀 왔습니다.</p>
+      <div class="stamp">
+        <div><b>2015–</b><span class="cap">무대 경력</span></div>
+        <div><b>3회</b><span class="cap">대회 수상</span></div>
+        <div><b>5년 연속</b><span class="cap">평택 대회 본선</span></div>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="https://youtube.com/@violet_ewha?si=Dn8aZWbbNtOXoVzP" target="_blank" rel="noopener">영상 보기</a>
+        <a class="btn btn-outline-ink" href="#career">경력 보기</a>
+      </div>
+    </div>
+  </div>
+</div></div></section>
+
+<!-- profile -->
+<section id="profile" class="band-cloud"><div class="wrap">
+  <div class="sec-head"><div><p class="eyebrow">PROFILE</p><h2 class="d-md">프로필</h2></div></div>
+  <div class="profile">
+    <div class="info">
+      <dl>
+        <dt>이름</dt><dd>배이화</dd>
+        <dt>이메일</dt><dd><a href="mailto:qodlghk3377@gmail.com">qodlghk3377@gmail.com</a></dd>
+        <dt>Instagram</dt><dd><a href="https://www.instagram.com/ryfhix/" target="_blank" rel="noopener">@ryfhix</a></dd>
+        <dt>YouTube</dt><dd><a href="https://youtube.com/@violet_ewha?si=Dn8aZWbbNtOXoVzP" target="_blank" rel="noopener">@violet_ewha</a></dd>
+      </dl>
+    </div>
+    <div class="cats">
+      <div class="cat"><svg viewBox="0 0 48 48"><path d="M6 40h36M10 40V22h28v18M14 22l10-12 10 12"/></svg><b>공연</b><span class="cap">테마파크·축제·행사 공연팀</span></div>
+      <div class="cat"><svg viewBox="0 0 48 48"><path d="M16 8h16v10a8 8 0 0 1-16 0zM24 26v8M16 40h16M16 12H9a5 5 0 0 0 7 8M32 12h7a5 5 0 0 1-7 8"/></svg><b>대회</b><span class="cap">수상 3회 · 본선 다수</span></div>
+      <div class="cat"><svg viewBox="0 0 48 48"><path d="M24 6l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z"/></svg><b>아티스트</b><span class="cap">백업댄서 · 연습생 · 데뷔조</span></div>
+      <div class="cat"><svg viewBox="0 0 48 48"><circle cx="24" cy="12" r="5"/><path d="M24 17v13M14 22l10 3 10-3M18 42l6-12 6 12"/></svg><b>안무 가이드</b><span class="cap">음원·뮤지컬 안무 가이드</span></div>
+      <div class="cat"><svg viewBox="0 0 48 48"><rect x="6" y="8" width="36" height="24" rx="2"/><path d="M16 40h16M24 32v8M14 20h20"/></svg><b>티칭</b><span class="cap">유·초등부 수업 · 개인 레슨</span></div>
+      <div class="cat"><svg viewBox="0 0 48 48"><rect x="6" y="14" width="26" height="20" rx="2"/><path d="M32 22l10-6v16l-10-6"/></svg><b>촬영</b><span class="cap">프로모션 · VR · 방송</span></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- highlights -->
+<section id="highlights"><div class="wrap">
+  <div class="sec-head"><div><p class="eyebrow">HIGHLIGHTS</p><h2 class="d-xl">대표 경력</h2></div></div>
+  <div class="grid">
+    <article class="card"><div class="photo">공연 사진</div><p class="yr">2026.02</p><h3 class="d-xs">레고랜드 코리아 공연팀</h3><p class="cap">테마파크 상설 공연팀 소속 퍼포머.</p><div class="tags"><span class="pill-ink">공연</span><span class="pill-out">현재</span></div></article>
+    <article class="card"><div class="photo">무대 사진</div><p class="yr">2018.12</p><h3 class="d-xs">모모랜드 백업댄서</h3><p class="cap">연말 시상식 가요대전, 멜론뮤직어워드 무대.</p><div class="tags"><span class="pill-ink">아티스트</span><span class="pill-out">방송</span></div></article>
+    <article class="card"><div class="photo">프로필 사진</div><p class="yr">2019.08</p><h3 class="d-xs">걸그룹 큐빅스 데뷔조</h3><p class="cap">어쿠스틱·SG엔터테인먼트 연습생을 거친 데뷔 준비.</p><div class="tags"><span class="pill-ink">아티스트</span><span class="pill-out">연습생</span></div></article>
+    <article class="card"><div class="photo">수업 사진</div><p class="yr">2019 – 2024</p><h3 class="d-xs">안무 가이드 · K-pop 티칭</h3><p class="cap">음원·아동뮤지컬 안무 가이드, 유·초등부 수업과 개인 레슨.</p><div class="tags"><span class="pill-ink">티칭</span><span class="pill-out">가이드</span></div></article>
+  </div>
+</div></section>
+
+<!-- career -->
+<section id="career" class="band-cloud"><div class="wrap">
+  <div class="sec-head">
+    <div><p class="eyebrow">CAREER</p><h2 class="d-md">전체 경력</h2></div>
+    <div class="tabs" role="group" aria-label="경력 분류">
+      <button class="tab" aria-pressed="true" data-f="all">전체</button>
+      <button class="tab" aria-pressed="false" data-f="공연">공연</button>
+      <button class="tab" aria-pressed="false" data-f="대회">대회</button>
+      <button class="tab" aria-pressed="false" data-f="아티스트">아티스트</button>
+      <button class="tab" aria-pressed="false" data-f="티칭">안무·티칭</button>
+      <button class="tab" aria-pressed="false" data-f="촬영">촬영</button>
+    </div>
+  </div>
+  <div class="timeline" id="timeline"></div>
+</div></section>
+
+<!-- promo -->
+<section><div class="wrap">
+  <div class="promo">
+    <div>
+      <blockquote>“청소년 대회 본선 무대부터 테마파크 공연팀까지, 춤은 늘 제 일의 중심이었습니다.”</blockquote>
+      <p class="cap">— 배이화 · 문장은 직접 다듬어 주세요.</p>
+    </div>
+    <div class="nums">
+      <div><b>3</b><span>대회 수상 (엔터테인먼트상 · 인기상 2)</span></div>
+      <div><b>4</b><span>공연팀 소속 (서울랜드 · 제주민속촌 · 118 · 레고랜드)</span></div>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<!-- contact -->
+<section id="contact" class="help"><div class="wrap">
+  <h2 class="d-xl">함께 무대를 만들어요</h2>
+  <p>공연 · 안무 가이드 · K-pop 수업 문의</p>
+  <div class="tabs">
+    <a class="tab" href="mailto:qodlghk3377@gmail.com">이메일</a>
+    <a class="tab" href="https://www.instagram.com/ryfhix/" target="_blank" rel="noopener">Instagram</a>
+    <a class="tab" href="https://youtube.com/@violet_ewha?si=Dn8aZWbbNtOXoVzP" target="_blank" rel="noopener">YouTube</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fcols">
+    <div><b>포트폴리오</b><a href="#highlights">대표 경력</a><a href="#career">전체 경력</a></div>
+    <div><b>프로필</b><a href="#profile">기본 정보</a><a href="#profile">활동 분야</a></div>
+    <div><b>SNS</b><a href="https://www.instagram.com/ryfhix/" target="_blank" rel="noopener">Instagram</a><a href="https://youtube.com/@violet_ewha?si=Dn8aZWbbNtOXoVzP" target="_blank" rel="noopener">YouTube</a></div>
+    <div><b>연락</b><a href="mailto:qodlghk3377@gmail.com">qodlghk3377@gmail.com</a></div>
+  </div>
+  <div class="fbottom"><span>© 2026 배이화</span><span>K-pop Dancer · Performer · Instructor</span></div>
+</div></footer>
+
+<script>
+// [날짜, 내용, 분류, 수상여부]
+const career=[
+ ["2026.02","레고랜드 코리아 공연팀","공연"],
+ ["2024.06","유치부·초등부 K-pop 수업","티칭"],
+ ["2023.10","웰컴 대학로 118 댄스팀 공연","공연"],
+ ["2023.10","댄싱 노원 118 댄스팀 공연","공연"],
+ ["2023.06","제주민속촌 공연팀","공연"],
+ ["2023.05","평택 갓 텔런트 본선 출전","대회"],
+ ["2023","서바이벌 프로그램 「업투유」 촬영","촬영"],
+ ["2023.01","위드스타 웨딩 공연","공연"],
+ ["2022.04","VR 안무 촬영","촬영"],
+ ["2022.02","서울랜드 공연팀 근무","공연"],
+ ["2021.02","제작 mix곡 프로모션 촬영","촬영"],
+ ["2021.01","아동뮤지컬 안무 가이드","티칭"],
+ ["2020.08","「눈누난나」 프로모션 촬영","촬영"],
+ ["2020.08","「A Million Dreams」 프로모션 촬영","촬영"],
+ ["2020.06","SG엔터테인먼트 연습생","아티스트"],
+ ["2019.12","베일리엔터테인먼트 댄스팀 퀸덤 리더","아티스트"],
+ ["2019.12","오산 매홀고등학교 축제 「매홀리데이」 찬조공연","공연"],
+ ["2019.10","오산대학교 총장배 청소년 K-pop 댄스 경연대회 인기상","대회",1],
+ ["2019.08","「8월의 크리스마스」 공연","공연"],
+ ["2019.08","비어축제 공연","공연"],
+ ["2019.08","대전 군부대 공연","공연"],
+ ["2019.08","걸그룹 큐빅스 데뷔조","아티스트"],
+ ["2019.06","어쿠스틱엔터테인먼트 연습생","아티스트"],
+ ["2019.05","평택 청소년 가요 댄싱대회 인기상","대회",1],
+ ["2019.02","버스터즈 「새콤달콤」 안무 가이드","티칭"],
+ ["2018.12","모모랜드 백업댄서 (가요대전, 멜론뮤직어워드)","아티스트"],
+ ["2018.09","JCI 청소년 드림 페스티벌 엔터테인먼트상","대회",1],
+ ["2018.06","한미 댄싱 카니발 축제 공연","공연"],
+ ["2018.03","댄스팀 어필링 회장","아티스트"],
+ ["2015–2019","평택 청소년 가요 댄싱대회 본선 출전 (5년 연속)","대회"],
+ ["상시","K-pop 개인 티칭 다수","티칭"]
+];
+const label={"공연":"공연","대회":"대회","아티스트":"아티스트","티칭":"안무·티칭","촬영":"촬영"};
+const tl=document.getElementById('timeline');
+tl.innerHTML=career.map(([d,t,c,a])=>`<div class="row" data-c="${c}"><time>${d}</time><b>${t}${a?'<span class="award">수상</span>':''}</b><span class="pill-out">${label[c]}</span></div>`).join('');
+
+document.querySelectorAll('#career .tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('#career .tab').forEach(x=>x.setAttribute('aria-pressed',x===t));
+  tl.querySelectorAll('.row').forEach(r=>r.hidden=t.dataset.f!=='all'&&r.dataset.c!==t.dataset.f);
+});
+const menuBtn=document.querySelector('.menu-btn'),menu=document.getElementById('menu');
+menuBtn.onclick=()=>{const o=menu.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o)};
+menu.onclick=e=>{if(e.target.tagName==='A'){menu.classList.remove('open');menuBtn.setAttribute('aria-expanded',false)}};
+</script>
+</body>
+</html>
